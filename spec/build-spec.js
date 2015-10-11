@@ -3,6 +3,7 @@
 
 var fs = require('fs-extra');
 var temp = require('temp');
+var path = require('path');
 var specHelpers = require('atom-build-spec-helpers');
 
 describe('Build', function() {
@@ -35,7 +36,7 @@ describe('Build', function() {
       return specHelpers.vouch(temp.mkdir, 'atom-build-spec-').then(function (dir) {
         return specHelpers.vouch(fs.realpath, dir);
       }).then(function (dir) {
-        directory = dir + '/';
+        directory = dir + path.sep;
         atom.project.setPaths([ directory ]);
         return atom.packages.activatePackage('build');
       });

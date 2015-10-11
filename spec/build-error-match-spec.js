@@ -2,6 +2,7 @@
 
 var fs = require('fs-extra');
 var temp = require('temp');
+var path = require('path');
 
 describe('Error Match', function() {
   var errorMatchAtomBuildFile = __dirname + '/fixture/.atom-build.error-match.json';
@@ -18,7 +19,7 @@ describe('Error Match', function() {
   temp.track();
 
   beforeEach(function() {
-    directory = fs.realpathSync(temp.mkdirSync({ prefix: 'atom-build-spec-' })) + '/';
+    directory = fs.realpathSync(temp.mkdirSync({ prefix: 'atom-build-spec-' })) + path.sep;
     atom.project.setPaths([ directory ]);
 
     atom.config.set('build.buildOnSave', false);
